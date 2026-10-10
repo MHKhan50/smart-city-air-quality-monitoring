@@ -1,0 +1,84 @@
+[
+    {
+        "id": "6ac879f0a69cf76f",
+        "type": "tab",
+        "label": "IoT Cloud",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cdd4d81485d35e30",
+        "type": "group",
+        "z": "6ac879f0a69cf76f",
+        "name": "This is the Cloud Code - Put in separate flow (tab) called 'Cloud'",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "039b10683cf43a24",
+            "4f2181aaa960c6e0",
+            "438f59244201a84e"
+        ],
+        "x": 154,
+        "y": 99,
+        "w": 652,
+        "h": 102
+    },
+    {
+        "id": "039b10683cf43a24",
+        "type": "google-cloud-pubsub in",
+        "z": "6ac879f0a69cf76f",
+        "g": "cdd4d81485d35e30",
+        "account": "",
+        "keyFilename": "",
+       "subscription": "projects/YOUR_GCP_PROJECT_ID/subscriptions/telemetry-sub",
+        "assumeJSON": false,
+        "name": "Subscribe to Telemetry",
+        "x": 280,
+        "y": 160,
+        "wires": [
+            [
+                "438f59244201a84e"
+            ]
+        ]
+    },
+    {
+        "id": "4f2181aaa960c6e0",
+        "type": "debug",
+        "z": "6ac879f0a69cf76f",
+        "g": "cdd4d81485d35e30",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "438f59244201a84e",
+        "type": "function",
+        "z": "6ac879f0a69cf76f",
+        "g": "cdd4d81485d35e30",
+        "name": "Change to object",
+        "func": "msg.payload = JSON.parse(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "4f2181aaa960c6e0"
+            ]
+        ]
+    }
+]

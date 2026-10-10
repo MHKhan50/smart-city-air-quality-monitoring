@@ -1,0 +1,173 @@
+[
+    {
+        "id": "e80e264b0d96143a",
+        "type": "tab",
+        "label": "IoT Device Simulator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7e0bc6ba7fe9b528",
+        "type": "group",
+        "z": "e80e264b0d96143a",
+        "name": "Put this on a flow (tab) called 'IoT Device Simulator'",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "ba0b38867051ac79",
+            "05d329d29a57ef99",
+            "0c9a5fd10270066d",
+            "fa6e9e40e08adef0",
+            "add662363590c970",
+            "6c1fcd5955e87811",
+            "74a17bfabc7ea17f"
+        ],
+        "x": 34,
+        "y": 239,
+        "w": 892,
+        "h": 202
+    },
+    {
+        "id": "ba0b38867051ac79",
+        "type": "google-cloud-pubsub out",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "account": "",
+        "keyFilename": "",
+        "topic": "projects/YOUR_GCP_PROJECT_ID/topics/telemetry",
+        "name": "",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05d329d29a57ef99",
+        "type": "function",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "name": "example Telemetry object",
+        "func": "msg = {\"payload\" :\n  {\"example-object\": 1} // this is what we wish to send\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "ba0b38867051ac79"
+            ]
+        ]
+    },
+    {
+        "id": "0c9a5fd10270066d",
+        "type": "inject",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "05d329d29a57ef99"
+            ]
+        ]
+    },
+    {
+        "id": "fa6e9e40e08adef0",
+        "type": "google-cloud-pubsub out",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "account": "",
+        "keyFilename": "",
+        "topic": "projects/YOUR_GCP_PROJECT_ID/topics/state",
+        "name": "",
+        "x": 700,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "add662363590c970",
+        "type": "function",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "name": "example State object",
+        "func": "msg = {\"payload\" :\n  {\"example-object-state\": 999, \"second\": \"two\"} // this is what we wish to send\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 400,
+        "wires": [
+            [
+                "fa6e9e40e08adef0"
+            ]
+        ]
+    },
+    {
+        "id": "6c1fcd5955e87811",
+        "type": "inject",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "add662363590c970"
+            ]
+        ]
+    },
+    {
+        "id": "74a17bfabc7ea17f",
+        "type": "comment",
+        "z": "e80e264b0d96143a",
+        "g": "7e0bc6ba7fe9b528",
+        "name": "You will need all the other code required by the CW2 specification",
+        "info": "",
+        "x": 480,
+        "y": 340,
+        "wires": []
+    }
+]

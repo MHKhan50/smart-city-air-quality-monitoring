@@ -1,0 +1,310 @@
+[
+    {
+        "id": "cf52c921d1014a8b",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9d4b3531.391338",
+        "type": "inject",
+        "z": "cf52c921d1014a8b",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "1ef482ff.54be1d"
+            ]
+        ]
+    },
+    {
+        "id": "1ef482ff.54be1d",
+        "type": "file in",
+        "z": "cf52c921d1014a8b",
+        "name": "read a spreadsheet file as binary buffer",
+        "filename": "./data/edinburgh_sensor_data.xlsx",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "allProps": false,
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "58da0822.79c4a8"
+            ]
+        ]
+    },
+    {
+        "id": "58da0822.79c4a8",
+        "type": "book",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "raw": false,
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "8bd99783.125c38",
+                "ed8b8fb2.0d17c"
+            ]
+        ]
+    },
+    {
+        "id": "ed8b8fb2.0d17c",
+        "type": "sheet",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "sheetName": "Sheet1",
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "9c0ed110.bc235"
+            ]
+        ]
+    },
+    {
+        "id": "9c0ed110.bc235",
+        "type": "sheet-to-json",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "raw": "false",
+        "range": "A1:G100",
+        "header": "default",
+        "blankrows": false,
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "2c35810b251d9924",
+                "b0098b6c62044d2f"
+            ]
+        ]
+    },
+    {
+        "id": "8bd99783.125c38",
+        "type": "debug",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload.SheetNames",
+        "x": 610,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "4c28547e.6d566c",
+        "type": "debug",
+        "z": "cf52c921d1014a8b",
+        "name": "debug_split",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2c35810b251d9924",
+        "type": "split",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 430,
+        "y": 640,
+        "wires": [
+            [
+                "4c28547e.6d566c",
+                "8b571397b6b9e249"
+            ]
+        ]
+    },
+    {
+        "id": "8b571397b6b9e249",
+        "type": "delay",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 800,
+        "wires": [
+            [
+                "99a8f87cc6e7f0d7",
+                "69796dd18b24c36d"
+            ]
+        ]
+    },
+    {
+        "id": "8bf6b8478ace7152",
+        "type": "debug",
+        "z": "cf52c921d1014a8b",
+        "name": "debug_final",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "57cd323fc443b3a4",
+        "type": "inject",
+        "z": "cf52c921d1014a8b",
+        "name": "RESET BUFFER",
+        "props": [
+            {
+                "p": "reset",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 800,
+        "wires": [
+            [
+                "8b571397b6b9e249"
+            ]
+        ]
+    },
+    {
+        "id": "b0098b6c62044d2f",
+        "type": "debug",
+        "z": "cf52c921d1014a8b",
+        "name": "debug_sheet",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3becc1673abc6100",
+        "type": "comment",
+        "z": "cf52c921d1014a8b",
+        "name": "Smart City Air Quality Sensor Reader Flow",
+        "info": "",
+        "x": 160,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "99a8f87cc6e7f0d7",
+        "type": "change",
+        "z": "cf52c921d1014a8b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.timestamp",
+                "pt": "msg",
+                "to": "$number(msg.payload.timestamp)\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload.nitric_oxide",
+                "pt": "msg",
+                "to": "$number(msg.payload.nitric_oxide)\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload.nitrogen_dioxide",
+                "pt": "msg",
+                "to": "$number(msg.payload.nitrogen_dioxide)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 800,
+        "wires": [
+            [
+                "8bf6b8478ace7152"
+            ]
+        ]
+    },
+    {
+        "id": "69796dd18b24c36d",
+        "type": "debug",
+        "z": "cf52c921d1014a8b",
+        "name": "Raw Data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 740,
+        "wires": []
+    }
+]
