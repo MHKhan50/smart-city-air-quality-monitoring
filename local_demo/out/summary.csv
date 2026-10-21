@@ -1,0 +1,13 @@
+metric,value
+messages_in,1406
+stored,1405
+alerts,3
+rejected,1
+first_reading_utc,2022-01-01 01:00:00+00:00
+last_reading_utc,2022-03-01 00:00:00+00:00
+no2_mean_ugm3,26.4
+no2_max_hourly_ugm3,136.7
+hours_above_uk_hourly_objective_200,0
+hours_above_elevated_100,3
+days_above_who_24h_25,32
+days_with_data,60

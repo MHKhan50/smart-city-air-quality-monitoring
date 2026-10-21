@@ -1,0 +1,2 @@
+google-cloud-pubsub>=2.13,<3
+google-cloud-firestore>=2.7,<3
