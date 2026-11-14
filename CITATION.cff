@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Smart City Air Quality Monitoring & Cloud IoT Pipeline"
+version: 1.0.0
+date-released: 2026-10-11
+doi: 10.5281/zenodo.23307426
+type: software
+authors:
+  - family-names: Hussain
+    given-names: Muzammal
+    orcid: "https://orcid.org/0009-0001-2570-5686"
+repository-code: "https://github.com/MHKhan50/smart-city-air-quality-monitoring"
+license: MIT
+keywords:
+  - IoT
+  - air quality
+  - cloud pipeline
+  - smart city

@@ -1,5 +1,7 @@
 # Smart City Air Quality Monitoring: IoT to Cloud Pipeline
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23307426.svg)](https://doi.org/10.5281/zenodo.23307426)
+
 An event-driven IoT pipeline that streams air quality readings from a roadside sensor to the cloud, validates them, stores them, and raises alerts. It replays two months of real hourly nitrogen oxide (NO) and nitrogen dioxide (NO2) readings from Edinburgh Nicolson Street as if they came from a live device.
 
 The whole pipeline also runs on a laptop with no cloud account, so it can be tested and demonstrated in one command.
